@@ -1,0 +1,96 @@
+
+.booking_body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.table-container {
+    background-color: hsl(0, 0%, 89%);
+    width: 80%; 
+    border: 2px solid; 
+    border-radius: 10px;
+    padding: 10px; 
+    padding-bottom: 30px;
+    color: white;
+    margin: auto;
+    font-size: 30px;
+}
+
+.text-green {
+    color: green;
+}
+
+.green-container1 {
+    background-color: green;
+    border: 2px; 
+    border-radius: 10px;
+    width: 80%;
+    margin: auto;
+    margin-top: 10%;
+    padding-top: 55px;
+}
+.green-container2 {
+    background-color: green;
+    border: 2px; 
+    border-radius: 10px;
+    width: 80%;
+    margin: auto;
+    padding-bottom: 55px;
+    color: white;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.counter {
+    display: flex;
+    justify-content: space-between;
+}
+.increment-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.decrement-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.count-display {
+    font-size: 25px;
+}

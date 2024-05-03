@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - Green Bus</title>
+    <link rel="stylesheet" href="./stylesheets/styles_global.css">
+    <link rel="stylesheet" href="./stylesheets/booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<div class="booking-body">
+    <div class="navbar">
+        <a href="#plan-my-journey">Plan my journey</a>
+        <a href="#customer-service">Customer Service</a>
+        <a href="#track-my-bus">Track my bus</a>
+        <a href="./booking.html">Book Tickets</a>
+    </div>
+    <div class="green-container1"></div>
+    <table class="table-container">
+        <tr class="text-green">
+            <th>Journey</th>
+            <th>Date & Time</th>
+            <th>Tickets</th>
+        </tr>
+        <tr>
+            <td>
+                <ul class="text-green">
+                    <li>
+                        <p>From:</p>
+                        <div class="dropdown">
+                            <button class="dropbtn" id="travelFromBtn">Travel From</button>
+                            <div class="dropdown-content">
+                                <a href="#">Ennis</a>
+                                <a href="#">Limerick</a>
+                                <a href="#">Dublin</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <p>To:</p>
+                        <div class="dropdown">
+                            <button class="dropbtn" id="travelToBtn">Travel To</button>
+                            <div class="dropdown-content">
+                                <a href="#">Ennis</a>
+                                <a href="#">Limerick</a>
+                                <a href="#">Dublin</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <p>Ticket Type:</p>
+                        <div class="dropdown">
+                            <button class="dropbtn" id="ticketTypeBtn">Ticket Type</button>
+                            <div class="dropdown-content">
+                                <a href="#">Single</a>
+                                <a href="#">Return</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </td>
+            <td>
+                <ul class="text-green" id="return/depart">
+                    <li>
+                        <p>Depart on:</p>
+                        <div class="dropdown">
+                            <button class="dropbtn">Depart</button>
+                            <div class="dropdown-content">
+                                <a href="#">Oh god how</a>
+                            </div>
+                        </div>
+                    </li>
+                    <script>
+                        function addReturnbtn(){
+                            if (selectedOptions.ticketType === 'Return') {
+                                // Create the new 'li' element
+                                let li = document.createElement('li');
+                        
+                                // Set the innerHTML of the 'li' element
+                                li.innerHTML = `
+                                    <p>Return on:</p>
+                                    <div class="dropdown">
+                                        <button class="dropbtn">Return</button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Oh god how</a>
+                                        </div>
+                                    </div>
+                                `;
+                        
+                                // Append the new 'li' element to the 'ul' element
+                                document.querySelector('.text-green').appendChild(li);
+                            }
+                        }
+                        addReturnbtn();
+                    </script>
+                </ul>
+            </td>
+            <td>
+                <ul class="text-green">
+                    <div class="counter">
+                        <p>No. of Adults:</p>
+                        <div>
+                            <button class="decrement-btn"><i class="fas fa-minus"></i></button>
+                        </div>
+                        <div>
+                            <p class="count-display">0</p>
+                        </div>
+                        <div>
+                            <button class="increment-btn"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="counter">
+                        <p>No. of Accompanied Child:</p>
+                        <div>
+                            <button class="decrement-btn"><i class="fas fa-minus"></i></button>
+                        </div>
+                        <div>
+                            <p class="count-display">0</p>
+                        </div>
+                        <div>
+                            <button class="increment-btn"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="counter">
+                        <p>Young Adult/Student:</p>
+                        <div>
+                            <button class="decrement-btn"><i class="fas fa-minus"></i></button>
+                        </div>
+                        <div>
+                            <p class="count-display">0</p>
+                        </div>
+                        <div>
+                            <button class="increment-btn"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </ul>  
+            </td>
+        </tr>
+    </table>
+    <div class="green-container2">Select your journey details</div>
+</div>
+    <script src="./scripts/handleBooking.js"></script>
+    <script>
+        window.onload = function() {
+            handleTicketCount();
+            TicketDetails();
+            addReturnbtn();
+        }
+    </script>
+</html>
