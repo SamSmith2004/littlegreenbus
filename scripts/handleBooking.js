@@ -34,6 +34,9 @@ let selectedOptions = {
     from: '',
     to: '',
     ticketType: '',
+    adultcount: 0,
+    childcount: 0,
+    studentcount: 0
 };
 
 function TicketDetails() {
@@ -67,36 +70,89 @@ function TicketDetails() {
                     break;
             }
             if ((selectedOptions.from !== '') && (selectedOptions.to !== '') && (selectedOptions.ticketType !== '')) {
-                console.log(selectedOptions);
+                //console.log(selectedOptions);
+                addReturnbtn(selectedOptions);
             }
         });
     });
+}
 
-    function addReturnbtn(){
-        // Check if the 'Return on:' dropdown already exists
-        if (document.getElementById('returnDropdown')) {
-            // If it exists, remove it
-            document.getElementById('returnDropdown').remove();
-        }
-
-        if (selectedOptions.ticketType === 'Return') {
-            // Create the new 'li' element
-            let li = document.createElement('li');
-            li.id = 'returnDropdown'; // Add an id to the 'li' element
-
-            // Set the innerHTML of the 'li' element
-            li.innerHTML = `
-                <p>Return on:</p>
-                <div class="dropdown">
-                    <button class="dropbtn">Return</button>
-                    <div class="dropdown-content">
-                        <a href="#">Oh god how</a>
-                    </div>
+function addReturnbtn(){
+    if (selectedOptions.ticketType === 'Return') {
+        const element = document.getElementById('return/depart');
+        const li = document.createElement('li');
+        const p = document.createElement('p');
+        p.appendChild(document.createTextNode('Return on:'));
+        let div = document.createElement('div');
+        div.className = 'dropdown'; // Use .className instead of .class
+        let btn = document.createElement('button');
+        btn.className = 'dropbtn'; // Use .className instead of .class
+        btn.appendChild(document.createTextNode('Return'));
+        let div2 = document.createElement('div');
+        div2.className = 'dropdown-content'; // Use .className instead of .class
+        let a = document.createElement('a');
+        a.appendChild(document.createTextNode('placeholder'));
+        div2.appendChild(a);
+        div.appendChild(btn);
+        div.appendChild(div2);
+        li.appendChild(p);
+        li.appendChild(div);
+        li.id = 'returnBtn';
+        /* This creates:
+        <li>
+            <p>Return on:</p>
+            <div class="dropdown">
+                <button class="dropbtn">Return</button>
+                <div class="dropdown-content">
+                    <a href="#">placeholder</a>
                 </div>
-            `;
+            </div>
+        </li>
+        */
+        element.appendChild(li); // add the list to the element with id 'return/depart'
+        //console.log('if sucessful');
+        bookButton(selectedOptions)
+    } 
+    if (document.getElementById('returnBtn') && selectedOptions.ticketType !== 'Return') {
+        document.getElementById('returnBtn').remove();
+        //console.log('if removed');
 
-            // Append the new 'li' element to the 'ul' element
-            document.querySelector('.text-green').appendChild(li);
-        }
     }
+}
+
+let ticketDetails;
+
+function bookButton() {
+    const bookButton = document.getElementById('bookBtn');
+
+    // Check if the 'click' event listener has already been added
+    if (bookButton.hasAttribute('data-click-listener-added')) {
+        return;
+    }
+
+    bookButton.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        ticketDetails = {
+            from: selectedOptions.from,
+            to: selectedOptions.to,
+            ticketType: selectedOptions.ticketType,
+            adultcount: document.getElementById('adultCount').textContent,
+            childcount: document.getElementById('childCount').textContent,
+            studentcount: document.getElementById('studentCount').textContent
+        };
+        //console.log(ticketDetails);
+
+        sessionStorage.setItem('ticketDetails', JSON.stringify(ticketDetails)); // Store ticketDetails in localStorage
+
+        // Redirect to a new page
+        window.location.href = '../booking/booking-select.html'; 
+    });
+    // Mark that the 'click' event listener has been added
+    bookButton.setAttribute('data-click-listener-added', 'true');
+}
+
+function carryBookingDetails() {
+    let bookingDetails = JSON.parse(sessionStorage.getItem('ticketDetails')); // Retrieve ticketDetails from localStorage
+    console.log(bookingDetails);
 }

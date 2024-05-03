@@ -13,7 +13,7 @@
         <a href="#plan-my-journey">Plan my journey</a>
         <a href="#customer-service">Customer Service</a>
         <a href="#track-my-bus">Track my bus</a>
-        <a href="./booking.html">Book Tickets</a>
+        <a href="./booking-front.html">Book Tickets</a>
     </div>
     <div class="green-container1"></div>
     <table class="table-container">
@@ -70,29 +70,6 @@
                             </div>
                         </div>
                     </li>
-                    <script>
-                        function addReturnbtn(){
-                            if (selectedOptions.ticketType === 'Return') {
-                                // Create the new 'li' element
-                                let li = document.createElement('li');
-                        
-                                // Set the innerHTML of the 'li' element
-                                li.innerHTML = `
-                                    <p>Return on:</p>
-                                    <div class="dropdown">
-                                        <button class="dropbtn">Return</button>
-                                        <div class="dropdown-content">
-                                            <a href="#">Oh god how</a>
-                                        </div>
-                                    </div>
-                                `;
-                        
-                                // Append the new 'li' element to the 'ul' element
-                                document.querySelector('.text-green').appendChild(li);
-                            }
-                        }
-                        addReturnbtn();
-                    </script>
                 </ul>
             </td>
             <td>
@@ -103,7 +80,7 @@
                             <button class="decrement-btn"><i class="fas fa-minus"></i></button>
                         </div>
                         <div>
-                            <p class="count-display">0</p>
+                            <p class="count-display" id="adultCount">0</p>
                         </div>
                         <div>
                             <button class="increment-btn"><i class="fas fa-plus"></i></button>
@@ -115,7 +92,7 @@
                             <button class="decrement-btn"><i class="fas fa-minus"></i></button>
                         </div>
                         <div>
-                            <p class="count-display">0</p>
+                            <p class="count-display" id="childCount">0</p>
                         </div>
                         <div>
                             <button class="increment-btn"><i class="fas fa-plus"></i></button>
@@ -127,11 +104,14 @@
                             <button class="decrement-btn"><i class="fas fa-minus"></i></button>
                         </div>
                         <div>
-                            <p class="count-display">0</p>
+                            <p class="count-display" id="studentCount">0</p>
                         </div>
                         <div>
                             <button class="increment-btn"><i class="fas fa-plus"></i></button>
                         </div>
+                    </div>
+                    <div>
+                        <button class="book-btn" id="bookBtn">Book</button>
                     </div>
                 </ul>  
             </td>
@@ -144,7 +124,11 @@
         window.onload = function() {
             handleTicketCount();
             TicketDetails();
-            addReturnbtn();
+            bookButton();
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            addReturnbtn();
+            console.log('DOM load') //test passed
+        });
     </script>
 </html>
