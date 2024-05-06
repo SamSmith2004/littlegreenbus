@@ -94,3 +94,14 @@
 .count-display {
     font-size: 25px;
 }
+
+.unbutton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.time-selected{
+    background-color: green;
+}

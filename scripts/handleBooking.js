@@ -39,6 +39,9 @@ let selectedOptions = {
     studentcount: 0
 };
 
+let removedElement = null;
+let dropdownContent = '';
+
 function TicketDetails() {
     document.querySelectorAll('.dropdown-content a').forEach(item => {
         item.addEventListener('click', event => {
@@ -73,6 +76,10 @@ function TicketDetails() {
                 //console.log(selectedOptions);
                 addReturnbtn(selectedOptions);
             }
+            if (document.getElementById('travelFromBtn').textContent === document.getElementById('travelToBtn').textContent){
+                alert('You cannot travel from and to the same location');
+            }
+            
         });
     });
 }
@@ -146,7 +153,7 @@ function bookButton() {
         sessionStorage.setItem('ticketDetails', JSON.stringify(ticketDetails)); // Store ticketDetails in localStorage
 
         // Redirect to a new page
-        window.location.href = '../booking/booking-select.html'; 
+        window.location.href = '/booking-select.html'; 
     });
     // Mark that the 'click' event listener has been added
     bookButton.setAttribute('data-click-listener-added', 'true');
@@ -154,5 +161,37 @@ function bookButton() {
 
 function carryBookingDetails() {
     let bookingDetails = JSON.parse(sessionStorage.getItem('ticketDetails')); // Retrieve ticketDetails from localStorage
-    console.log(bookingDetails);
+    sessionStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
+    document.getElementById('journeyTitle').textContent = `Outgoing journey: ${bookingDetails.from} to ${bookingDetails.to} on date`;
+}
+
+let selectedTime = false;
+function TicketTime() {
+    document.querySelectorAll('#select-time button').forEach(item => {
+    // must add '#' to the querySelectorAll if using id instead of class
+        item.addEventListener('click', event => {
+            if (selectedTime === true) return;
+
+            event.preventDefault();
+            bookingDetails = JSON.parse(sessionStorage.getItem('ticketDetails'));
+
+            event.target.classList.add('time-selected');
+
+            bookingDetails.time = event.target.textContent;
+            console.table(bookingDetails);
+            sessionStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
+
+            selectedTime = true;
+        });
+    });
+}
+
+function addReturnTime() {
+    let returnCheck = JSON.parse(sessionStorage.getItem('bookingDetails'));
+    if (returnCheck.ticketType === 'Return') {
+        let createHtml = '<button class="unbutton"><h1 class="" id="return-900">9:00</h1></button><div></div><button class="unbutton"><h1 class="" id="return-1200">12:00</h1></button><div></div><button class="unbutton"><h1 class="" id="return-1800">18:00</h1></button><div></div>';
+        document.getElementById('select-time').innerHTML += createHtml;
+        return createHtml;
+    }
+    return;
 }

@@ -10,10 +10,10 @@
 </head>
 <div class="booking-body">
     <div class="navbar">
-        <a href="#plan-my-journey">Plan my journey</a>
+        <a href="/index.html">Home</a>
         <a href="#customer-service">Customer Service</a>
         <a href="#track-my-bus">Track my bus</a>
-        <a href="./booking-front.html">Book Tickets</a>
+        <a href="/booking-front.html">Book Tickets</a>
     </div>
     <div class="green-container1"></div>
     <table class="table-container">
@@ -40,10 +40,10 @@
                         <p>To:</p>
                         <div class="dropdown">
                             <button class="dropbtn" id="travelToBtn">Travel To</button>
-                            <div class="dropdown-content">
-                                <a href="#">Ennis</a>
-                                <a href="#">Limerick</a>
-                                <a href="#">Dublin</a>
+                            <div class="dropdown-content" id="travelToDrop">
+                                <a href="#" id="Ennis">Ennis</a>
+                                <a href="#" id="Limerick">Limerick</a>
+                                <a href="#" id="Dublin">Dublin</a>
                             </div>
                         </div>
                     </li>
@@ -128,7 +128,6 @@
         }
         document.addEventListener('DOMContentLoaded', function() {
             addReturnbtn();
-            console.log('DOM load') //test passed
         });
     </script>
 </html>
