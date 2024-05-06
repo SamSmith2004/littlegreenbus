@@ -165,6 +165,8 @@ function carryBookingDetails() {
     document.getElementById('journeyTitle').textContent = `Outgoing journey: ${bookingDetails.from} to ${bookingDetails.to} on date`;
 }
 
+let bookingDetails = JSON.parse(sessionStorage.getItem('bookingDetails'));
+
 let selectedTime = false;
 function TicketTime() {
     document.querySelectorAll('#select-time button').forEach(item => {
@@ -173,12 +175,11 @@ function TicketTime() {
             if (selectedTime === true) return;
 
             event.preventDefault();
-            bookingDetails = JSON.parse(sessionStorage.getItem('ticketDetails'));
 
             event.target.classList.add('time-selected');
 
             bookingDetails.time = event.target.textContent;
-            console.table(bookingDetails);
+            //console.table(bookingDetails);
             sessionStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
 
             selectedTime = true;
@@ -189,9 +190,36 @@ function TicketTime() {
 function addReturnTime() {
     let returnCheck = JSON.parse(sessionStorage.getItem('bookingDetails'));
     if (returnCheck.ticketType === 'Return') {
-        let createHtml = '<button class="unbutton"><h1 class="" id="return-900">9:00</h1></button><div></div><button class="unbutton"><h1 class="" id="return-1200">12:00</h1></button><div></div><button class="unbutton"><h1 class="" id="return-1800">18:00</h1></button><div></div>';
-        document.getElementById('select-time').innerHTML += createHtml;
+        let createHtml = '<div id="select-return-time"><button class="unbutton"><h1 class="" id="return-900">9:00</h1></button><div></div><button class="unbutton"><h1 class="" id="return-1200">12:00</h1></button><div></div><button class="unbutton"><h1 class="" id="return-1800">18:00</h1></button></div>';
+        let returntime = document.getElementById('select-time-parent').innerHTML += createHtml;
+        TicketTime(); 
         return createHtml;
     }
     return;
+}
+
+let selectedReturnTime = false;
+function TicketReturnTime() {
+    document.querySelectorAll('#select-return-time button').forEach(item => {
+    // must add '#' to the querySelectorAll if using id instead of class
+        item.addEventListener('click', event => {
+            if (selectedReturnTime === true) return;
+
+            event.preventDefault();
+
+            event.target.classList.add('time-selected');
+
+            bookingDetails.returntime = event.target.textContent;
+            sessionStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
+
+            if (bookingDetails.time === bookingDetails.returntime) {
+                alert('You cannot return at the same time as you depart');
+                event.target.classList.remove('time-selected');
+
+                selectedReturnTime = false;
+            } else {
+                console.table(JSON.parse(sessionStorage.getItem('bookingDetails')));
+                selectedReturnTime = true;
+        }});
+    });
 }

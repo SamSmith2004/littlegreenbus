@@ -15,27 +15,28 @@
         <a href="./booking-front.html">Book Tickets</a>
     </div>
     <h1 id="journeyTitle">Outgoing journey: {bookingDetails.from} to {bookingDetails.from} on date</h1>
-    <div id="select-time">
-        <button class="unbutton">
-            <h1 class="" id="depart-900">9:00</h1>
-        </button>
-        <div></div>
-        <button class="unbutton">
-            <h1 class="" id="depart-1200">12:00</h1>
-        </button>
-        <div></div>
-        <button class="unbutton">
-            <h1 class="" id="depart-1800">18:00</h1>
-        </button>
-        <div></div>
+    <div id="select-time-parent">
+        <div id="select-time">
+            <button class="unbutton">
+                <h1 class="" id="depart-900">9:00</h1>
+            </button>
+            <div></div>
+            <button class="unbutton">
+                <h1 class="" id="depart-1200">12:00</h1>
+            </button>
+            <div></div>
+            <button class="unbutton">
+                <h1 class="" id="depart-1800">18:00</h1>
+            </button>
+        </div>
     </div>
 </div>
 <script src="./scripts/handleBooking.js"></script>
     <script>
         window.onload = function() {
             carryBookingDetails()
-            TicketTime()
             addReturnTime()
+            TicketReturnTime();
         }
     </script>
 </html>
