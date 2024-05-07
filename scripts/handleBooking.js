@@ -78,6 +78,8 @@ function TicketDetails() {
             }
             if (document.getElementById('travelFromBtn').textContent === document.getElementById('travelToBtn').textContent){
                 alert('You cannot travel from and to the same location');
+                document.getElementById('travelFromBtn').textContent = 'Travel From';
+                document.getElementById('travelToBtn').textContent = 'Travel To';
             }
             
         });
@@ -165,24 +167,27 @@ function carryBookingDetails() {
     document.getElementById('journeyTitle').textContent = `Outgoing journey: ${bookingDetails.from} to ${bookingDetails.to} on date`;
 }
 
-let bookingDetails = JSON.parse(sessionStorage.getItem('bookingDetails'));
-
-let selectedTime = false;
+let hasSelectedTime = false;
+let selectedTime = '';
 function TicketTime() {
+    let bookingDetails = JSON.parse(sessionStorage.getItem('bookingDetails'));
     document.querySelectorAll('#select-time button').forEach(item => {
     // must add '#' to the querySelectorAll if using id instead of class
         item.addEventListener('click', event => {
-            if (selectedTime === true) return;
+            if (hasSelectedTime === true){
+                document.getElementById(selectedTime).classList.remove('time-selected');
+            };
 
             event.preventDefault();
 
             event.target.classList.add('time-selected');
 
             bookingDetails.time = event.target.textContent;
-            //console.table(bookingDetails);
             sessionStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
+            console.log(JSON.parse(sessionStorage.getItem('bookingDetails')));
 
-            selectedTime = true;
+            hasSelectedTime = true;
+            selectedTime = event.target.id;
         });
     });
 }
@@ -191,19 +196,26 @@ function addReturnTime() {
     let returnCheck = JSON.parse(sessionStorage.getItem('bookingDetails'));
     if (returnCheck.ticketType === 'Return') {
         let createHtml = '<div id="select-return-time"><button class="unbutton"><h1 class="" id="return-900">9:00</h1></button><div></div><button class="unbutton"><h1 class="" id="return-1200">12:00</h1></button><div></div><button class="unbutton"><h1 class="" id="return-1800">18:00</h1></button></div>';
-        let returntime = document.getElementById('select-time-parent').innerHTML += createHtml;
-        TicketTime(); 
+        let returntime = document.getElementById('select-time-parent').innerHTML += createHtml; 
         return createHtml;
     }
     return;
 }
 
-let selectedReturnTime = false;
+let hasSelectedReturnTime = false;
+let returnSelectedTime = '';
 function TicketReturnTime() {
+    if (!hasSelectedTime) { 
+        // TODO FIX THIS
+        return;
+    }
+    let bookingDetails = JSON.parse(sessionStorage.getItem('bookingDetails'));
     document.querySelectorAll('#select-return-time button').forEach(item => {
     // must add '#' to the querySelectorAll if using id instead of class
         item.addEventListener('click', event => {
-            if (selectedReturnTime === true) return;
+            if (hasSelectedReturnTime === true) {
+                document.getElementById(returnSelectedTime).classList.remove('time-selected');
+            };
 
             event.preventDefault();
 
@@ -219,7 +231,21 @@ function TicketReturnTime() {
                 selectedReturnTime = false;
             } else {
                 console.table(JSON.parse(sessionStorage.getItem('bookingDetails')));
-                selectedReturnTime = true;
+                hasSelectedReturnTime = true;
+                returnSelectedTime = event.target.id;
         }});
+    });
+}
+
+function TimeSubmit() {
+    let bookingDetails = JSON.parse(sessionStorage.getItem('bookingDetails'));
+    document.getElementById('submitTicketTime').addEventListener('click', event => {
+        event.preventDefault();
+        
+        if (bookingDetails.ticketType === 'Single') {
+            if (bookkingDetails.time ==! '') {
+                window.location.href = '/booking-details.html';
+            }
+        }
     });
 }
