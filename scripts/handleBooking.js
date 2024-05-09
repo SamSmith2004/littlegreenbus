@@ -11,7 +11,7 @@ function handleTicketCount() {
     let incrementButtons = document.getElementsByClassName("increment-btn");
     // Increments the count when the increment button is clicked
     for (let i = 0; i < incrementButtons.length; i++) { // incrementButtons.length = number of increment buttons
-        incrementButtons[i].addEventListener('click', function() {
+        incrementButtons[i].addEventListener('click', function () {
             // When an increment button is clicked, increment the corresponding count
             counts[i]++;
             // Update the text content of the corresponding count display to the new count
@@ -23,7 +23,7 @@ function handleTicketCount() {
     let decrementButtons = document.getElementsByClassName("decrement-btn");
     // Same jazz as above but for decrementing
     for (let i = 0; i < decrementButtons.length; i++) {
-        decrementButtons[i].addEventListener('click', function() {
+        decrementButtons[i].addEventListener('click', function () {
             if (counts[i] > 0) counts[i]--;
             document.getElementsByClassName("count-display")[i].textContent = counts[i];
         });
@@ -49,7 +49,7 @@ function TicketDetails() {
             event.preventDefault();
 
             // Get the id of the dropdown button
-            let dropdownBtnId = event.target.parentNode.previousElementSibling.id; 
+            let dropdownBtnId = event.target.parentNode.previousElementSibling.id;
             /* event.target is the HTML element that triggered the event (in this case, the <a> tag that was clicked).
                event.target.parentNode refers to the parent element of the element that triggered the event.
                event.target.parentNode.previousElementSibling refers to the sibling element that comes before the parent of the element that triggered the event,
@@ -60,7 +60,7 @@ function TicketDetails() {
             document.getElementById(dropdownBtnId).textContent = event.target.textContent;
 
             // Save the selected option
-            switch(dropdownBtnId) {
+            switch (dropdownBtnId) {
                 // Checks which dropdown button was clicked and saves the selected option
                 case 'travelFromBtn':
                     selectedOptions.from = event.target.textContent;
@@ -76,17 +76,17 @@ function TicketDetails() {
                 //console.log(selectedOptions);
                 addReturnbtn(selectedOptions);
             }
-            if (document.getElementById('travelFromBtn').textContent === document.getElementById('travelToBtn').textContent){
+            if (document.getElementById('travelFromBtn').textContent === document.getElementById('travelToBtn').textContent) {
                 alert('You cannot travel from and to the same location');
                 document.getElementById('travelFromBtn').textContent = 'Travel From';
                 document.getElementById('travelToBtn').textContent = 'Travel To';
             }
-            
+
         });
     });
 }
 
-function addReturnbtn(){
+function addReturnbtn() {
     if (selectedOptions.ticketType === 'Return') {
         const element = document.getElementById('return/depart');
         const li = document.createElement('li');
@@ -121,7 +121,7 @@ function addReturnbtn(){
         element.appendChild(li); // add the list to the element with id 'return/depart'
         //console.log('if sucessful');
         bookButton(selectedOptions)
-    } 
+    }
     if (document.getElementById('returnBtn') && selectedOptions.ticketType !== 'Return') {
         document.getElementById('returnBtn').remove();
         //console.log('if removed');
@@ -139,7 +139,7 @@ function bookButton() {
         return;
     }
 
-    bookButton.addEventListener('click', function(event) {
+    bookButton.addEventListener('click', function (event) {
         event.preventDefault();
 
         ticketDetails = {
@@ -155,7 +155,7 @@ function bookButton() {
         sessionStorage.setItem('ticketDetails', JSON.stringify(ticketDetails)); // Store ticketDetails in localStorage
 
         // Redirect to a new page
-        window.location.href = '/booking-select.html'; 
+        window.location.href = '/booking-select.html';
     });
     // Mark that the 'click' event listener has been added
     bookButton.setAttribute('data-click-listener-added', 'true');
@@ -172,9 +172,10 @@ let selectedTime = '';
 function TicketTime() {
     let bookingDetails = JSON.parse(sessionStorage.getItem('bookingDetails'));
     document.querySelectorAll('#select-time button').forEach(item => {
-    // must add '#' to the querySelectorAll if using id instead of class
+        // must add '#' to the querySelectorAll if using id instead of class
         item.addEventListener('click', event => {
-            if (hasSelectedTime === true){
+            console.log('click') // Logs first click, but fails to log subsequent clicks
+            if (hasSelectedTime === true) {
                 document.getElementById(selectedTime).classList.remove('time-selected');
             };
 
@@ -188,62 +189,87 @@ function TicketTime() {
 
             hasSelectedTime = true;
             selectedTime = event.target.id;
+            addReturnTime(hasSelectedTime);
+            TicketReturnTime(selectedTime);
         });
     });
 }
 
 function addReturnTime() {
+    if (document.getElementById('select-return-time')) {
+        return;
+    }
+
     let returnCheck = JSON.parse(sessionStorage.getItem('bookingDetails'));
-    if (returnCheck.ticketType === 'Return') {
-        let createHtml = '<div id="select-return-time"><button class="unbutton"><h1 class="" id="return-900">9:00</h1></button><div></div><button class="unbutton"><h1 class="" id="return-1200">12:00</h1></button><div></div><button class="unbutton"><h1 class="" id="return-1800">18:00</h1></button></div>';
-        let returntime = document.getElementById('select-time-parent').innerHTML += createHtml; 
+    if (returnCheck.ticketType === 'Return' && hasSelectedTime === true) {
+        let createHtml = `<div id="select-return-time">`;
+        let departTime = returnCheck.time.split(':')[0]; // Get the hour of the departure time
+        let departTimeNumber = Number(departTime);
+
+        // Check if the time is 9:00, 12:00, or 18:00
+        if (departTimeNumber < 10) {
+            createHtml += `<button class="unbutton"><h1 class="" id="return-10">10:00</h1></button><div></div>`;
+        }
+        if (departTimeNumber < 12) {
+            createHtml += `<button class="unbutton"><h1 class="" id="return-12">12:00</h1></button><div></div>`;
+        }
+        if (departTimeNumber < 18) {
+            createHtml += `<button class="unbutton"><h1 class="" id="return-18">18:00</h1></button><div></div>`;
+        }
+        if (departTimeNumber < 19) {
+            createHtml += `<button class="unbutton"><h1 class="" id="return-19">19:00</h1></button>`;
+        }
+
+        createHtml += `</div>`;
+        let returntime = document.getElementById('select-time-parent').innerHTML += createHtml;
         return createHtml;
     }
-    return;
 }
+
 
 let hasSelectedReturnTime = false;
 let returnSelectedTime = '';
 function TicketReturnTime() {
-    if (!hasSelectedTime) { 
-        // TODO FIX THIS
+    if (hasSelectedTime=== false) {
         return;
+    } else {
+        let bookingDetails = JSON.parse(sessionStorage.getItem('bookingDetails'));
+        document.querySelectorAll('#select-return-time button').forEach(item => {
+            // must add '#' to the querySelectorAll if using id instead of class
+            item.addEventListener('click', event => {
+                if (hasSelectedReturnTime === true) {
+                    document.getElementById(returnSelectedTime).classList.remove('time-selected');
+                };
+
+                event.preventDefault();
+
+                event.target.classList.add('time-selected');
+
+                bookingDetails.returntime = event.target.textContent;
+                sessionStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
+
+                if (bookingDetails.time === bookingDetails.returntime) {
+                    alert('You cannot return at the same time as you depart');
+                    event.target.classList.remove('time-selected');
+
+                    selectedReturnTime = false;
+                } else {
+                    console.table(JSON.parse(sessionStorage.getItem('bookingDetails')));
+                    hasSelectedReturnTime = true;
+                    returnSelectedTime = event.target.id;
+                }
+            });
+        });
     }
-    let bookingDetails = JSON.parse(sessionStorage.getItem('bookingDetails'));
-    document.querySelectorAll('#select-return-time button').forEach(item => {
-    // must add '#' to the querySelectorAll if using id instead of class
-        item.addEventListener('click', event => {
-            if (hasSelectedReturnTime === true) {
-                document.getElementById(returnSelectedTime).classList.remove('time-selected');
-            };
-
-            event.preventDefault();
-
-            event.target.classList.add('time-selected');
-
-            bookingDetails.returntime = event.target.textContent;
-            sessionStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
-
-            if (bookingDetails.time === bookingDetails.returntime) {
-                alert('You cannot return at the same time as you depart');
-                event.target.classList.remove('time-selected');
-
-                selectedReturnTime = false;
-            } else {
-                console.table(JSON.parse(sessionStorage.getItem('bookingDetails')));
-                hasSelectedReturnTime = true;
-                returnSelectedTime = event.target.id;
-        }});
-    });
 }
 
 function TimeSubmit() {
     let bookingDetails = JSON.parse(sessionStorage.getItem('bookingDetails'));
     document.getElementById('submitTicketTime').addEventListener('click', event => {
         event.preventDefault();
-        
+
         if (bookingDetails.ticketType === 'Single') {
-            if (bookkingDetails.time ==! '') {
+            if (bookkingDetails.time == ! '') {
                 window.location.href = '/booking-details.html';
             }
         }
