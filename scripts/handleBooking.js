@@ -206,7 +206,7 @@ function addReturnTime() {
         let departTime = returnCheck.time.split(':')[0]; // Get the hour of the departure time
         let departTimeNumber = Number(departTime);
 
-        // Check if the time is 9:00, 12:00, or 18:00
+        // Ensure the return time is after the departure time
         switch (true) {
             case (departTimeNumber < 10):
                 createHtml += `<button class="unbutton"><h1 class="" id="return-10">10:00</h1></button><div></div>`;
