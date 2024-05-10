@@ -207,17 +207,15 @@ function addReturnTime() {
         let departTimeNumber = Number(departTime);
 
         // Check if the time is 9:00, 12:00, or 18:00
-        if (departTimeNumber < 10) {
-            createHtml += `<button class="unbutton"><h1 class="" id="return-10">10:00</h1></button><div></div>`;
-        }
-        if (departTimeNumber < 12) {
-            createHtml += `<button class="unbutton"><h1 class="" id="return-12">12:00</h1></button><div></div>`;
-        }
-        if (departTimeNumber < 18) {
-            createHtml += `<button class="unbutton"><h1 class="" id="return-18">18:00</h1></button><div></div>`;
-        }
-        if (departTimeNumber < 19) {
-            createHtml += `<button class="unbutton"><h1 class="" id="return-19">19:00</h1></button>`;
+        switch (true) {
+            case (departTimeNumber < 10):
+                createHtml += `<button class="unbutton"><h1 class="" id="return-10">10:00</h1></button><div></div>`;
+            case (departTimeNumber < 12):
+                createHtml += `<button class="unbutton"><h1 class="" id="return-12">12:00</h1></button><div></div>`;
+            case (departTimeNumber < 18):
+                createHtml += `<button class="unbutton"><h1 class="" id="return-18">18:00</h1></button><div></div>`;
+            case (departTimeNumber < 19):
+                createHtml += `<button class="unbutton"><h1 class="" id="return-19">19:00</h1></button>`;
         }
 
         createHtml += `</div>`;
