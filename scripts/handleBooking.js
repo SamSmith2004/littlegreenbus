@@ -256,6 +256,7 @@ function TicketReturnTime() {
                     hasSelectedReturnTime = true;
                     returnSelectedTime = event.target.id;
                 }
+                TicketTime(hasSelectedTime);
             });
         });
     }
