@@ -202,7 +202,7 @@ function addReturnTime() {
 
     let returnCheck = JSON.parse(sessionStorage.getItem('bookingDetails'));
     if (returnCheck.ticketType === 'Return' && hasSelectedTime === true) {
-        let createHtml = `<div id="select-return-time">`;
+        let createHtml = `<h1>Return Times</h1><div id="select-return-time">`;
         let departTime = returnCheck.time.split(':')[0]; // Get the hour of the departure time
         let departTimeNumber = Number(departTime);
 
