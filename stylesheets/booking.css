@@ -105,3 +105,28 @@
 .time-selected{
     background-color: green;
 }
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    float: left;
+    width: 30%;
+}
+
+.input-group input {
+    width: 70%; /* Adjust as needed */
+}
+
+.passengerFormBox {
+    margin-left: 50%;
+    margin-right: 20%;
+}
+
+.submitPassengerBtn{
+    margin-left: 50%;
+    margin-top: 2.5%;
+}
