@@ -114,19 +114,39 @@
 
 .input-group label {
     float: left;
-    width: 30%;
+    width: 40%;
+    font-size: 30px;
 }
 
 .input-group input {
-    width: 70%; /* Adjust as needed */
-}
-
-.passengerFormBox {
-    margin-left: 50%;
-    margin-right: 20%;
+    width: 60%; /* Adjust as needed */
 }
 
 .submitPassengerBtn{
     margin-left: 50%;
     margin-top: 2.5%;
+}
+
+.passengerContainer {
+    display: flex;
+    justify-content: space-between; 
+    gap: 10%;
+}
+/*
+.journeybox, .passengerFormBox {
+    flex: 1; 
+} */
+
+.journeybox {
+    width: 100%; 
+    margin-left: 10%;
+}
+.journeybox p,h3 {
+    font-size: 30px;
+}
+
+.passengerFormBox {
+    width: 100%; 
+    margin-left: 20%;
+    margin-right: 10%;
 }
