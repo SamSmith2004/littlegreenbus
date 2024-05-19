@@ -142,6 +142,11 @@ function bookButton() {
     bookButton.addEventListener('click', function (event) {
         event.preventDefault();
 
+        if (document.getElementById('childCount').textContent > '0' && document.getElementById('studentCount').textContent == '0' && document.getElementById('adultCount').textContent == '0'){
+            alert('You cannot have a child ticket without an adult or student ticket');
+            document.getElementById('childCount').textContent = '0';
+            return;
+        }
         ticketDetails = {
             from: selectedOptions.from,
             to: selectedOptions.to,
