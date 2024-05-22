@@ -10,7 +10,7 @@
 <div>
     <div class="navbar">
         <a href="/index.html">Home</a>
-        <a href="#customer-service">Customer Service</a>
+        <a href="./customer-service.html">Customer Service</a>
         <a href="#track-my-bus">Track my bus</a>
         <a href="./booking-front.html">Book Tickets</a>
     </div>
@@ -41,7 +41,7 @@
             </div>
             <div class="input-group">
                 <label for="email">Confirm Email:</label>
-                <input type="email" id="confirmEmail" name="email" placeholder="confirm your email" required>
+                <input type="email" id="confirmEmail" name="email" placeholder="Confirm your email" required>
             </div>
             
             <div class="input-group">
@@ -70,6 +70,7 @@
 <script src="./scripts/handleBooking.js"></script>
     <script>
         window.onload = function() {
+            GetJourneyDetails();
             CheckStudent();
         }
     </script>

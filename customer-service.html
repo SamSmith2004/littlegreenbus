@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - Green Bus</title>
+    <link rel="stylesheet" href="./stylesheets/styles_global.css">
+    <link rel="stylesheet" href="./stylesheets/contact.css">
+</head>
+<div>
+    <div class="navbar">
+        <a href="/index.html">Home</a>
+        <a href="./customer-service.html">Customer Service</a>
+        <a href="#track-my-bus">Track my bus</a>
+        <a href="./booking-front.html">Book Tickets</a>
+    </div>
+    <div class="contactBox">
+        <h1>Contact Us:</h1>
+        <form id="contactForm" class="contactForm">
+            <div class="input-group2">
+                <label for="email">Email:</label>
+                <input type="email" id="emailC" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-group2">
+                <label for="email">Confirm Email:</label>
+                <input type="email" id="confirmEmailC" name="email" placeholder="Confirm your email" required>
+            </div>
+            
+            <div class="input-group2">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phoneC" name="phone" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="input-group2">
+                <label for="message">Message:</label>
+                <textarea id="messageC" name="message" placeholder="Enter your message" required></textarea>
+            </div>
+            <p id="isSubmitted?" class=""></p>
+        </form>
+    </div>
+<button id="submitContactBtn" class="submitContactBtn" onclick="validateForm(event);">Next</button>
+<script src="./scripts/contact.js"></script>
+    <script>
+        window.onload = function() {
+        }
+    </script>
+</html>

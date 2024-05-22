@@ -326,5 +326,80 @@ function PassengerDetailsSubmit() {
     if (document.getElementById('studentid')) {
         passengerInfo.studentid = document.getElementById('studentid').value;
     }
-    console.log(passengerInfo);
+    if (passengerInfo.firstname === '' || passengerInfo.lastname === '' || passengerInfo.email === '' || passengerInfo.phone === '' || passengerInfo.address === '' || passengerInfo.city === '' || passengerInfo.postcode === '') {
+        alert('Please fill in all fields');
+        return;
+    }
+    sessionStorage.setItem('passengerInfo', JSON.stringify(passengerInfo));
+    window.location.href = '/booking-confirmation.html';
+}
+
+function GetJourneyDetails() {
+    let bookingDetails = JSON.parse(sessionStorage.getItem('bookingDetails'));
+
+    let journeyCardTitle = document.getElementById('journeyCardTitle');
+
+    journeyCardTitle.textContent = `From: ${bookingDetails.from} To: ${bookingDetails.to} Date: ${bookingDetails.date}`;
+    return journeyCardTitle;
+}
+
+function choosePayment() {
+    document.querySelectorAll('#paymentOptions input').forEach(item => {
+        // must add '#' to the querySelectorAll if using id instead of class
+        item.addEventListener('click', event => {
+            event.preventDefault();
+            let paymentMethod = event.target.id;
+            console.log(paymentMethod);
+
+            let paymentSelectedParent = document.getElementById('paymentSelected');
+            let paymentSelected = '';
+            switch (paymentMethod) {
+                case 'creditCard':
+                    paymentSelected = `
+                    <div>
+                        <label for="cardNumber">Card Number:</label>
+                        <input type="text" id="cardNumber" name="cardNumber">
+                    </div>
+                    <div>
+                        <label for="expiryDate">Expiry Date:</label>
+                        <input type="text" id="expiryDate" name="expiryDate">
+                    </div>
+                    <div>
+                        <label for="cvv">CVV:</label>
+                        <input type="text" id="cvv" name="cvv">
+                    </div>
+                    `;
+                    break;
+                case 'debitCard':
+                    paymentSelected = `
+                    <div>
+                        <label for="cardNumber">Card Number:</label>
+                        <input type="text" id="cardNumber" name="cardNumber">
+                    </div>
+                    <div>
+                        <label for="expiryDate">Expiry Date:</label>
+                        <input type="text" id="expiryDate" name="expiryDate">
+                    </div>
+                    <div>
+                        <label for="cvv">CVV:</label>
+                        <input type="text" id="cvv" name="cvv">
+                    </div>
+                    `;
+                    break;
+                case 'paypal':
+                    paymentSelected = `
+                    <div>
+                        <label for="paypalEmail">PayPal Email:</label>
+                        <input type="email" id="paypalEmail" name="paypalEmail">
+                    </div>
+                        `;
+                    break;
+                default:
+                    return '';
+            }
+            
+            paymentSelectedParent.innerHTML = paymentSelected;
+            return paymentSelectedParent;
+        });
+    });
 }
