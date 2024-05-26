@@ -19,29 +19,23 @@
     <h1>Please select a payment method</h1>
     <div id="paymentOptions">
         <div class="payment-group">
-            <input type="radio" id="creditCard" name="paymentMethod" value="creditCard">
-            <label for="creditCard">Credit Card</label>
+            <p id="chooseCreditCard" onclick="choosePayment();">Credit Card</p>
         </div>
         <div class="payment-group">
-            <input type="radio" id="debitCard" name="paymentMethod" value="debitCard">
-            <label for="debitCard">Debit Card</label>
+            <p id="chooseDebitCard" onclick="choosePayment();">Debit Card</p>
         </div>
         <div class="payment-group">
-            <input type="radio" id="payPal" name="paymentMethod" value="payPal">
-            <label for="payPal">PayPal</label>
+            <p id="choosePayPal" onclick="choosePayment();">PayPal</p>
         </div>
-    </div id="paymentSelected">
+    </div>
     <div>
-
+        <button>Proceed</button>
+        <div id="paymentSelected"></div>
     </div>
 </div>
 <script src="./scripts/handleBooking.js"></script>
     <script>
         window.onload = function() {
-            //choosePayment();
         }
-        document.addEventListener('DOMContentLoaded', function() {
-            choosePayment();
-        });
     </script>
 </html>

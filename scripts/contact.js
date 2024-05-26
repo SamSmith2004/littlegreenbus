@@ -7,7 +7,7 @@ function validateForm(event) {
         alert("Invalid email address");
         return;
     }
-    if (document.getElementById('confirmEmailC').value ==! email) {
+    if (document.getElementById('confirmEmailC').value !== email) {
         alert("Emails don't match");
         return;
     }
