@@ -107,6 +107,7 @@ function addReturnbtn() {
     div.className = "dropdown"; // Use .className instead of .class
     let input = document.createElement("input");
     input.type = "date";
+    input.id = "dateReturn";
     input.appendChild(document.createTextNode("Return"));
     let div2 = document.createElement("div");
     div2.className = "dropdown-content"; // Use .className instead of .class
@@ -163,6 +164,24 @@ function bookButton() {
       document.getElementById("childCount").textContent = "0";
       return;
     }
+    if (document.getElementById("dateDepart").value === "") {
+      alert("Please select a departure date");
+      return;
+    }
+    if (document.getElementById("dateReturn")) {
+      if (document.getElementById("dateReturn").value === "") {
+        alert("Please select a return date");
+        return;F
+      }
+      let dateDepart = document.getElementById("dateDepart").value;
+      let dayDepart = dateDepart.slice(-2);
+      let dateReturn = document.getElementById("dateReturn").value;
+      let dayReturn = dateReturn.slice(-2);
+      if (dayReturn < dayDepart) {
+        alert("Return date cannot be before departure date");
+        return;
+      }
+    }
     ticketDetails = {
       from: selectedOptions.from,
       to: selectedOptions.to,
@@ -170,8 +189,12 @@ function bookButton() {
       adultcount: document.getElementById("adultCount").textContent,
       childcount: document.getElementById("childCount").textContent,
       studentcount: document.getElementById("studentCount").textContent,
+      dateDepart: document.getElementById("dateDepart").value,
     };
-    //console.log(ticketDetails);
+
+    if (selectedOptions.ticketType === "Return") {
+      ticketDetails.dateReturn = document.getElementById("dateReturn").value;
+    }
 
     sessionStorage.setItem("ticketDetails", JSON.stringify(ticketDetails)); // Store ticketDetails in localStorage
 
@@ -197,7 +220,6 @@ function TicketTime() {
   document.querySelectorAll("#select-time button").forEach((item) => {
     // must add '#' to the querySelectorAll if using id instead of class
     item.addEventListener("click", (event) => {
-      console.log("click"); // Logs first click, but fails to log subsequent clicks
       if (hasSelectedTime === true) {
         document.getElementById(selectedTime).classList.remove("time-selected");
       }
@@ -280,7 +302,7 @@ function TicketReturnTime() {
 
           selectedReturnTime = false;
         } else {
-          console.table(JSON.parse(sessionStorage.getItem("bookingDetails")));
+          console.log(JSON.parse(sessionStorage.getItem("bookingDetails")));
           hasSelectedReturnTime = true;
           returnSelectedTime = event.target.id;
         }
