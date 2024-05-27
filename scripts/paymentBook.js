@@ -1,8 +1,8 @@
 function choosePayment() {
-    event.preventDefault();
-    let hasSelectedPayment = JSON.parse(localStorage.getItem("hasSelectedPayment"));
-    if (hasSelectedPayment === true) {
-      let targetElement = event.target;
+    //event.preventDefault();
+
+    if (hasSelectedPayment === true || priorSelectedPayment === event.target.id) {
+      let targetElement = document.getElementById(priorSelectedPayment);
       targetElement.classList.remove("paymentChoice");
     }
   
@@ -29,7 +29,7 @@ function choosePayment() {
                       `;
         targetElement.classList.add("paymentChoice");
         hasSelectedPayment = true;
-        sessionStorage.setItem("hasSelectedPayment", hasSelectedPayment);
+        priorSelectedPayment = event.target.id;
         break;
       case "chooseDebitCard":
         paymentSelected = `
@@ -46,7 +46,9 @@ function choosePayment() {
                           <input type="text" id="cvv" name="cvv">
                       </div>
                       `;
-        targetElement.className = "paymentChoice";
+                      targetElement.classList.add("paymentChoice");
+                      hasSelectedPayment = true;
+                      priorSelectedPayment= event.target.id;
         break;
       case "choosePayPal":
         paymentSelected = `
@@ -55,7 +57,9 @@ function choosePayment() {
                           <input type="email" id="paypalEmail" name="paypalEmail">
                       </div>
                           `;
-        targetElement.className = "paymentChoice";
+                          targetElement.classList.add("paymentChoice");
+                          hasSelectedPayment = true;
+                          priorSelectedPayment= event.target.id;
         break;
       default:
         return "";
