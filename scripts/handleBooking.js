@@ -210,7 +210,7 @@ function carryBookingDetails() {
   sessionStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
   document.getElementById(
     "journeyTitle"
-  ).textContent = `Outgoing journey: ${bookingDetails.from} to ${bookingDetails.to} on date`;
+  ).textContent = `Outgoing journey: ${bookingDetails.from} to ${bookingDetails.to} on ${bookingDetails.dateDepart}`;
 }
 
 let hasSelectedTime = false;
