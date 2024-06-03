@@ -21,5 +21,6 @@ function validateForm(event) {
     }
     
     let message = document.getElementById('isSubmitted?');
+    message.classList.add('msg-snd');
     message.textContent = "Message sent!";
 }

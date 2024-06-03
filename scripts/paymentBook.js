@@ -51,15 +51,10 @@ function choosePayment() {
                       priorSelectedPayment= event.target.id;
         break;
       case "choosePayPal":
-        paymentSelected = `
-                      <div>
-                          <label for="paypalEmail">PayPal Email:</label>
-                          <input type="email" id="paypalEmail" name="paypalEmail">
-                      </div>
-                          `;
                           targetElement.classList.add("paymentChoice");
                           hasSelectedPayment = true;
                           priorSelectedPayment= event.target.id;
+                          window.open("https://paypal.me/websamplepay12?country.x=IE&locale.x=en_US", "_blank");
         break;
       default:
         return "";
@@ -75,24 +70,30 @@ function choosePayment() {
     } else if (document.getElementById("dCardNumber")) {
       if (document.getElementById("dCardNumber").value.length !== 16) {
         alert("Please enter a valid debit card number");
+        return;
       }
       if (document.getElementById("expiryDate").value === "") {
         alert("Please enter an expiry date");
+        return;
       }
       if (document.getElementById("cvv").value.length !== 3) {
         alert("Please enter a valid CVV");
+        return;
       }
       window.location.href = "/booking-complete.html";
   
     } else if (document.getElementById("cCardNumber")) {
       if (document.getElementById("cCardNumber").value.length !== 16) {
         alert("Please enter a valid debit card number");
+        return;
       }
       if (document.getElementById("expiryDate").value === "") {
         alert("Please enter an expiry date");
+        return;
       }
       if (document.getElementById("cvv").value.length !== 3) {
         alert("Please enter a valid CVV");
+        return;
       }
       window.location.href = "/booking-complete.html";
   

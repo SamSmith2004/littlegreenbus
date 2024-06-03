@@ -35,3 +35,9 @@
     margin-left: 50%;
     margin-top: 2.5%;
 }
+
+.msg-snd {
+    color: green;
+    font-weight: bold;
+    font-family: comic sans ms;
+}
