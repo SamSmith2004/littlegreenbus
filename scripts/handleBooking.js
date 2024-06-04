@@ -208,9 +208,11 @@ function bookButton() {
 function carryBookingDetails() {
   let bookingDetails = JSON.parse(sessionStorage.getItem("ticketDetails")); // Retrieve ticketDetails from localStorage
   sessionStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
+  let bookingTime = bookingDetails.dateDepart;
+  bookingTime = bookingTime.split("-").reverse().join("/");
   document.getElementById(
     "journeyTitle"
-  ).textContent = `Outgoing journey: ${bookingDetails.from} to ${bookingDetails.to} on ${bookingDetails.dateDepart}`;
+  ).textContent = `Outgoing journey: ${bookingDetails.from} to ${bookingDetails.to} on ${bookingTime}`;
 }
 
 let hasSelectedTime = false;

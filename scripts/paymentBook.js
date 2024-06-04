@@ -61,16 +61,16 @@ function choosePayment() {
     }
   
     newParent.innerHTML = paymentSelected + `<div></div><button onclick="paymentSelected();">Proceed</button>`;
-    return newParent;
+    return hasSelectedPayment;
   }
-  
+
   function paymentSelected() {
-    if (document.getElementById("paypalEmail")) {
-      return;
+    if (document.getElementById('choosePayPal').classList.contains("paymentChoice")) {
+      window.location.href = "/booking-complete.html";
     } else if (document.getElementById("dCardNumber")) {
       if (document.getElementById("dCardNumber").value.length !== 16) {
         alert("Please enter a valid debit card number");
-        return;
+        return '';
       }
       if (document.getElementById("expiryDate").value === "") {
         alert("Please enter an expiry date");
@@ -85,19 +85,20 @@ function choosePayment() {
     } else if (document.getElementById("cCardNumber")) {
       if (document.getElementById("cCardNumber").value.length !== 16) {
         alert("Please enter a valid debit card number");
-        return;
+        return '';
       }
       if (document.getElementById("expiryDate").value === "") {
         alert("Please enter an expiry date");
-        return;
+        return '';
       }
       if (document.getElementById("cvv").value.length !== 3) {
         alert("Please enter a valid CVV");
-        return;
+        return '';
       }
       window.location.href = "/booking-complete.html";
   
     } else {
-      console.log("error: no payment method selected");
+      alert("Please select a payment method");
+      return '';
     }
   }

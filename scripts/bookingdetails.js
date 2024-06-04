@@ -23,12 +23,14 @@ function CheckStudent() {
   function PassengerDetailsSubmit() {
     if (document.getElementById("email").value.includes("@") === false) {
       alert("Please enter a valid email address");
+      return '';
     }
     if (
       document.getElementById("email").value !==
       document.getElementById("confirmEmail").value
     ) {
       alert("Emails do not match");
+      return '';
     }
     if (
       document.getElementById("phone").value.length < 10 ||
@@ -36,6 +38,7 @@ function CheckStudent() {
       isNaN(document.getElementById("phone").value) === true
     ) {
       alert("Please enter a valid phone number");
+      return '';
     }
   
     let passengerInfo = {
@@ -49,6 +52,10 @@ function CheckStudent() {
     };
     if (document.getElementById("studentid")) {
       passengerInfo.studentid = document.getElementById("studentid").value;
+      if (passengerInfo.studentid === "") {
+        alert("Please enter your student ID");
+        return '';
+      }
     }
     if (
       passengerInfo.firstname === "" ||
@@ -60,7 +67,7 @@ function CheckStudent() {
       passengerInfo.postcode === ""
     ) {
       alert("Please fill in all fields");
-      return;
+      return '';
     }
     sessionStorage.setItem("passengerInfo", JSON.stringify(passengerInfo));
     window.location.href = "/booking-confirmation.html";
@@ -68,9 +75,36 @@ function CheckStudent() {
   
   function GetJourneyDetails() {
     let bookingDetails = JSON.parse(sessionStorage.getItem("bookingDetails"));
-  
+
+    let bookingDate = bookingDetails.dateDepart;
+    bookingDate = bookingDate.split("-").reverse().join("/");
+
     let journeyCardTitle = document.getElementById("journeyCardTitle");
   
-    journeyCardTitle.textContent = `From: ${bookingDetails.from} To: ${bookingDetails.to} Date: ${bookingDetails.date}`;
-    return journeyCardTitle;
+    journeyCardTitle.textContent = `From: ${bookingDetails.from} to ${bookingDetails.to} on ${bookingDate}`;
+
+    let journeyCard = document.getElementById("journeyDetails");
+    let bookingTime = bookingDetails.time;
+    let colonIndex = bookingTime.indexOf(':');
+    bookingTime = bookingTime.slice(0, colonIndex);
+    bookingTime = parseInt(bookingTime) + 1;
+    bookingTime = bookingTime + ":00";
+    journeyCard.textContent = 'Journey: ';
+    journeyCard.textContent += `Departure: ${bookingDetails.time} Arrival: ${bookingTime}`;
+
+    if (bookingDetails.ticketType === "Return") {
+      let journeyCard2 = document.getElementById("journeyDetails2");
+
+      let returnDate = bookingDetails.dateReturn;
+      returnDate = returnDate.split("-").reverse().join("/");
+      journeyCard2.textContent = `Return: ${returnDate} `;
+
+      let bookingRetTime = bookingDetails.returntime;
+      let colonRetIndex = bookingTime.indexOf(':');
+      bookingRetTime = bookingRetTime.slice(0, colonRetIndex);
+      bookingRetTime = parseInt(bookingRetTime) + 1;
+      bookingRetTime = bookingRetTime + ":00";
+      journeyCard2.textContent += `Departure: ${bookingDetails.returntime} Arrival: ${bookingRetTime}`;
+    }
+    return;
   }
