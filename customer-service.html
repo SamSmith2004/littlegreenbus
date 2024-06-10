@@ -15,7 +15,7 @@
         <a href="./booking-front.html">Book Tickets</a>
     </div>
     <div class="contactBox">
-        <h1>Contact Us:</h1>
+        <h1>Contact Us</h1>
         <form id="contactForm" class="contactForm">
             <div class="input-group2">
                 <label for="email">Email:</label>
@@ -39,6 +39,22 @@
             <p id="isSubmitted?" class=""></p>
         </form>
     </div>
-<button id="submitContactBtn" class="submitContactBtn" onclick="validateForm(event);">Next</button>
+<button id="submitContactBtn" class="submitContactBtn" onclick="validateForm(event);">Submit</button>
 <script src="./scripts/contact.js"></script>
+<script>
+        const input = document.getElementById('messageC');
+        let limit = 45;
+
+        input.addEventListener('input', function() {
+            if (input.value.length > limit) {
+                const style = window.getComputedStyle(input);
+        
+                let currentHeight = parseInt(style.height, 10);
+                let newHeight = currentHeight + 10;
+                
+                limit += 45;
+                input.style.height = newHeight + 'px';
+            }
+        });
+</script>
 </html>

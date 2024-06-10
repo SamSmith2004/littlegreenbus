@@ -1,15 +1,26 @@
 
 .contactBox {
-    width: 100%;
     margin-left: 20%;
     margin-right: 10%;
     margin-top: 10%;
     font-size: 30px;
+    background: green;
+    border-radius: 10px;
+    color: white;
+    padding: 3%;
+    padding-top: 10px;
+    box-shadow: darkgreen 0px 0px 10px;
 }
 
 .contactForm {
     width: 100%; 
-    margin-right: 10%;
+    color: white;
+    font-weight: bold;
+}
+.contactForm input::placeholder, .contactForm textarea::placeholder {
+    color: #909090; 
+    font-size: 16px;
+    background-color: rgb(236, 236, 236);
 }
 
 .input-group2 {
@@ -25,19 +36,33 @@
 .input-group2 input {
     width: 60%; 
     margin-right: 30%;
+    border-radius: 5px;
+    border: green 2px;
 }
-.input-group2 textarea {
+.input-group2 textarea{
     width: 60%; 
     margin-right: 30%;
+    border-radius: 5px;
+    border: green 2px;
+    height: 40px;
+    resize: none;
 }
 
 .submitContactBtn{
     margin-left: 50%;
     margin-top: 2.5%;
+    background: green;
+    border-radius: 5px;
+    border: green 2px;
+    padding: 8px;
+    color: white;
+    font-weight: bolder;
+    font-size: 20px;
+    box-shadow: darkgreen 0px 0px 10px;
 }
 
 .msg-snd {
-    color: green;
+    color: white;
     font-weight: bold;
     font-family: comic sans ms;
 }
