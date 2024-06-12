@@ -171,7 +171,7 @@ function bookButton() {
     if (document.getElementById("dateReturn")) {
       if (document.getElementById("dateReturn").value === "") {
         alert("Please select a return date");
-        return;F
+        return;
       }
       let dateDepart = document.getElementById("dateDepart").value;
       let dayDepart = dateDepart.slice(-2);
@@ -218,17 +218,30 @@ function carryBookingDetails() {
 let hasSelectedTime = false;
 let selectedTime = "";
 function TicketTime() {
+  if (document.getElementById("select-return-time")) {
+    return '';
+  }
   let bookingDetails = JSON.parse(sessionStorage.getItem("bookingDetails"));
   document.querySelectorAll("#select-time button").forEach((item) => {
     // must add '#' to the querySelectorAll if using id instead of class
     item.addEventListener("click", (event) => {
       if (hasSelectedTime === true) {
-        document.getElementById(selectedTime).classList.remove("time-selected");
+        if (event.target.nodeName === "H1") {
+          let parentNode = document.getElementById(selectedTime).parentElement;
+          parentNode.classList.remove("time-selected");
+        } else {
+          document.getElementById(selectedTime).classList.remove("time-selected");
+        }
       }
 
       event.preventDefault();
 
-      event.target.classList.add("time-selected");
+      if (event.target.nodeName === "H1") {
+        let parentNode = event.target.parentElement;
+        parentNode.classList.add("time-selected");
+      } else {
+        event.target.classList.add("time-selected");
+      }
 
       bookingDetails.time = event.target.textContent;
       sessionStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
@@ -244,12 +257,12 @@ function TicketTime() {
 
 function addReturnTime() {
   if (document.getElementById("select-return-time")) {
-    return;
+    return '';
   }
 
   let returnCheck = JSON.parse(sessionStorage.getItem("bookingDetails"));
   if (returnCheck.ticketType === "Return" && hasSelectedTime === true) {
-    let createHtml = `<h1>Return Times</h1><div id="select-return-time">`;
+    let createHtml = `<h1>Return Times</h1><div id="select-return-time" class="select-time">`;
     let departTime = returnCheck.time.split(":")[0]; // Get the hour of the departure time
     let departTimeNumber = Number(departTime);
 
@@ -283,14 +296,22 @@ function TicketReturnTime() {
       // must add '#' to the querySelectorAll if using id instead of class
       item.addEventListener("click", (event) => {
         if (hasSelectedReturnTime === true) {
-          document
-            .getElementById(returnSelectedTime)
-            .classList.remove("time-selected");
+          if (event.target.nodeName === "H1") {
+            let parentNode = document.getElementById(returnSelectedTime).parentElement;
+            parentNode.classList.remove("time-selected");
+          } else {
+            document.getElementById(returnSelectedTime).classList.remove("time-selected");
+          }
         }
 
         event.preventDefault();
 
-        event.target.classList.add("time-selected");
+        if (event.target.nodeName === "H1") {
+          let parentNode = event.target.parentElement;
+          parentNode.classList.add("time-selected");
+        } else {
+          event.target.classList.add("time-selected");
+        }  
 
         bookingDetails.returntime = event.target.textContent;
         sessionStorage.setItem(

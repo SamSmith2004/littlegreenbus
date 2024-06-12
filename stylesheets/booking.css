@@ -114,15 +114,43 @@
     font-size: 25px;
 }
 
+.select-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .unbutton {
-    background: none;
-    border: none;
-    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 30%;
+    background: white;
+    border: 0.5px solid grey;
+    padding: 5px;
     cursor: pointer;
+    border-radius: 5px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-bottom: 5px;
+}
+
+.submitTime-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submitTime{
+    width: 30%;
+    height: 20%;
+    background-color: green;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .time-selected{
     background-color: green;
+    color: white;
 }
 
 .input-group {
@@ -150,6 +178,10 @@
     display: flex;
     justify-content: space-between; 
     gap: 10%;
+}
+
+.journeyTitle {
+    color: green;
 }
 
 .journeybox {

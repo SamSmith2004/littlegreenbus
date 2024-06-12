@@ -14,9 +14,9 @@
         <a href="#track-my-bus">Track my bus</a>
         <a href="./booking-front.html">Book Tickets</a>
     </div>
-    <h1 id="journeyTitle">Outgoing journey: {bookingDetails.from} to {bookingDetails.from} on {bookingDetails.dateDepart}</h1>
+    <h1 id="journeyTitle" class="journeyTitle">Outgoing journey: {bookingDetails.from} to {bookingDetails.from} on {bookingDetails.dateDepart}</h1>
     <div id="select-time-parent">
-        <div id="select-time">
+        <div id="select-time" class="select-time">
             <button class="unbutton">
                 <h1 class="" id="depart-900">9:00</h1>
             </button>
@@ -30,7 +30,7 @@
             </button>
         </div>
     </div>
-    <button id="submitTicketTime" onclick=TimeSubmit();>Next</button>
+    <div class="submitTime-container"><button id="submitTicketTime" class="submitTime" onclick=TimeSubmit();>Submit</button></div>
 </div>
 <script src="./scripts/handleBooking.js"></script>
     <script>
