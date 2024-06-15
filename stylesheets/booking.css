@@ -171,13 +171,21 @@
 
 .submitPassengerBtn{
     margin-left: 50%;
-    margin-top: 2.5%;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 5px;
+    padding: 20px;
 }
 
 .passengerContainer {
     display: flex;
     justify-content: space-between; 
     gap: 10%;
+    border: solid 1px grey;
+    margin: 10px;
+    border-radius: 5px;
 }
 
 .journeyTitle {
@@ -186,7 +194,13 @@
 
 .journeybox {
     width: 100%; 
-    margin-left: 10%;
+    background-color: green;
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-top: 10%;
+    padding-bottom: 80%;
+    padding-left: 15px;
+    padding-right: 10px;
 }
 .journeybox p,h3 {
     font-size: 30px;
@@ -194,8 +208,14 @@
 
 .passengerFormBox {
     width: 100%; 
-    margin-left: 20%;
     margin-right: 10%;
+    color: green;
+    font-weight: bold;
+}
+
+.passengerFormTitle{
+    font-weight: bolder;
+    color: darkgreen;
 }
 
 .paymentChoice {

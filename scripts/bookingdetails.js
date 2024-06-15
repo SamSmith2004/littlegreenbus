@@ -75,36 +75,38 @@ function CheckStudent() {
   
   function GetJourneyDetails() {
     let bookingDetails = JSON.parse(sessionStorage.getItem("bookingDetails"));
-
+  
     let bookingDate = bookingDetails.dateDepart;
     bookingDate = bookingDate.split("-").reverse().join("/");
-
+  
     let journeyCardTitle = document.getElementById("journeyCardTitle");
   
     journeyCardTitle.textContent = `From: ${bookingDetails.from} to ${bookingDetails.to} on ${bookingDate}`;
-
+  
     let journeyCard = document.getElementById("journeyDetails");
     let bookingTime = bookingDetails.time;
     let colonIndex = bookingTime.indexOf(':');
     bookingTime = bookingTime.slice(0, colonIndex);
     bookingTime = parseInt(bookingTime) + 1;
     bookingTime = bookingTime + ":00";
-    journeyCard.textContent = 'Journey: ';
-    journeyCard.textContent += `Departure: ${bookingDetails.time} Arrival: ${bookingTime}`;
-
+    journeyCard.innerHTML = 'Journey: <br>';
+    journeyCard.innerHTML += `Departure: ${bookingDetails.time}<br>Arrival: ${bookingTime}`;
+  
     if (bookingDetails.ticketType === "Return") {
       let journeyCard2 = document.getElementById("journeyDetails2");
-
+  
       let returnDate = bookingDetails.dateReturn;
       returnDate = returnDate.split("-").reverse().join("/");
-      journeyCard2.textContent = `Return: ${returnDate} `;
-
+      journeyCard2.innerHTML = `Return:<br>`;
+  
       let bookingRetTime = bookingDetails.returntime;
-      let colonRetIndex = bookingTime.indexOf(':');
+      let colonRetIndex = bookingRetTime.indexOf(':'); 
       bookingRetTime = bookingRetTime.slice(0, colonRetIndex);
       bookingRetTime = parseInt(bookingRetTime) + 1;
       bookingRetTime = bookingRetTime + ":00";
-      journeyCard2.textContent += `Departure: ${bookingDetails.returntime} Arrival: ${bookingRetTime}`;
+      journeyCard2.innerHTML += `Departure: ${bookingDetails.returntime}<br>`;
+      journeyCard2.innerHTML += `Arrival: ${bookingRetTime}<br>`;
+      journeyCard2.innerHTML += `${returnDate}`;
     }
     return;
   }
