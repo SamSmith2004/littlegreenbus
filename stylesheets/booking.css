@@ -130,7 +130,6 @@
     padding: 5px;
     cursor: pointer;
     border-radius: 5px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     margin-bottom: 5px;
 }
 
@@ -146,6 +145,8 @@
     background-color: green;
     border-radius: 5px;
     padding: 5px;
+    font-weight: bold;
+    color: white;
 }
 
 .time-selected{
@@ -190,13 +191,23 @@
 
 .journeyTitle {
     color: green;
+    margin-left: 5px;
+    text-align: center;
+}
+
+.returnTitle{
+    font-size: 30px;
+    font-weight: bold;
+    color: green;
+    margin-left: 5px;
+    text-align: center;
 }
 
 .journeybox {
     width: 100%; 
     background-color: green;
     color: white;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bold;
     padding-top: 10%;
     padding-left: 15px;
     padding-right: 10px;

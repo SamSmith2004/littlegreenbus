@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header {
+    color: green;
+    text-align: center;
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.apology{
+    color: green;
+    font-size: 40px;
+    text-align: center;
+}
