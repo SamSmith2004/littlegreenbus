@@ -14,15 +14,15 @@ function choosePayment() {
     switch (paymentMethod) {
       case "chooseCreditCard":
         paymentSelected = `
-                      <div>
+                      <div class="paySelectContainer>
                           <label for="cardNumber">Credit Card Number:</label>
                           <input type="text" id="cCardNumber" name="cardNumber">
                       </div>
-                      <div>
+                      <div class="paySelectContainer>
                           <label for="expiryDate">Expiry Date:</label>
                           <input type="month" id="expiryDate" name="expiryDate">
                       </div>
-                      <div>
+                      <div class="paySelectContainer>
                           <label for="cvv">CVV:</label>
                           <input type="text" id="cvv" name="cvv">
                       </div>
@@ -33,15 +33,15 @@ function choosePayment() {
         break;
       case "chooseDebitCard":
         paymentSelected = `
-                      <div>
+                      <div class="paySelectContainer">
                           <label for="cardNumber">Debit Card Number:</label>
                           <input type="text" id="dCardNumber" name="cardNumber">
                       </div>
-                      <div>
+                      <div class="paySelectContainer">
                           <label for="expiryDate">Expiry Date:</label>
                           <input type="month" id="expiryDate" name="expiryDate">
                       </div>
-                      <div>
+                      <div class="paySelectContainer">
                           <label for="cvv">CVV:</label>
                           <input type="text" id="cvv" name="cvv">
                       </div>
@@ -60,7 +60,7 @@ function choosePayment() {
         return "";
     }
   
-    newParent.innerHTML = paymentSelected + `<div></div><button onclick="paymentSelected();">Proceed</button>`;
+    newParent.innerHTML = paymentSelected + `<div></div><button class="payment-button" onclick="paymentSelected();">Proceed</button>`;
     return hasSelectedPayment;
   }
 

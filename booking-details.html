@@ -15,7 +15,7 @@
         <a href="./booking-front.html">Book Tickets</a>
     </div>
 <div class="passengerContainer">
-    <div>
+    <div id="journeyBoxParent">
         <div id = "journeyboxdepart" class="journeybox">
             <h1 id="journeyCardTitle">Outgoing journey</h1>
             <p id="journeyDetails"></p>
@@ -71,6 +71,9 @@
         window.onload = function() {
             GetJourneyDetails();
             CheckStudent();
+
+            let height = document.getElementById('passengerContainer').offsetHeight;
+            document.getElementById('journeyBoxParent').style.height = height + 'px';
         }
     </script>
 </html>

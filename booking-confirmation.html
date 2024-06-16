@@ -19,17 +19,20 @@
         <a href="./booking-front.html">Book Tickets</a>
     </div>
 </div>
-<div>
-    <h1>Please select a payment method</h1>
-    <div id="paymentOptions">
+<div id="paymentContainer">
+    <h1 style="text-align: center">Please select a payment method</h1>
+    <div id="paymentOptions" style="margin-bottom: 5%">
         <div class="payment-group">
             <p id="chooseCreditCard" onclick="choosePayment(hasSelectedPayment, priorSelectedPayment);">Credit Card</p>
+            <img src="./images/mastercard.png" class="credit-image">
         </div>
         <div class="payment-group">
             <p id="chooseDebitCard" onclick="choosePayment(hasSelectedPayment, priorSelectedPayment);">Debit Card</p>
+            <img src="./images/visa.jpg" class="debit-image">
         </div>
         <div class="payment-group">
             <p id="choosePayPal" onclick="choosePayment(hasSelectedPayment, priorSelectedPayment);">PayPal</p>
+            <img src="./images/paypal.jpg" class="paypal-image">
         </div>
     </div>
     <div>

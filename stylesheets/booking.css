@@ -166,7 +166,7 @@
 }
 
 .input-group input {
-    width: 60%; /* Adjust as needed */
+    width: 60%; 
 }
 
 .submitPassengerBtn{
@@ -198,7 +198,6 @@
     color: white;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     padding-top: 10%;
-    padding-bottom: 80%;
     padding-left: 15px;
     padding-right: 10px;
 }
@@ -219,7 +218,87 @@
 }
 
 .paymentChoice {
-    background-color: green;
+    color: darkblue;
     font-weight: bold;
     width: 15%;
+}
+
+.payment-group{
+    display: flex;
+    justify-content: center;
+    row-gap: 10%;
+    column-gap: 10%;
+    align-items: center;
+    border: solid 1px grey;
+    border-radius: 10px;
+    width: 60%; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+.payment-group p{
+    display: flex;
+    font-size: 30px;
+    font-weight: bold;
+    width: 40%;
+    height: 30%;
+}
+
+.credit-image {
+    width: 10%;
+    height: auto;
+}
+
+.debit-image {
+    width: 10%;
+    height: auto;
+}
+
+.paypal-image {
+    width: 10%;
+    height: auto;
+}
+
+.payment-button{
+    margin-top: 2%;
+    display: block; /* Ensures the element is block-level */
+    margin-left: auto;
+    margin-right: auto;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.paySelectContainer{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+.paySelectContainer label{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: left;
+    width: 25%;
+}
+.paySelectContainer input{
+    width: 30%;
+}
+
+.journeyComplete{
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 10%;
+    color: darkgreen;
+}
+.journeyComplete img{
+    width: 20%;
+    height: auto;
 }
