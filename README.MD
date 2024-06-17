@@ -4,6 +4,5 @@ A sample website for booking bus tickets
 - [x] Add logo to nav
 - [x] Fix booking-front.html
 - [x] Fix booking details.html
-- [] Fix mobile view
-- [] Address Track-my-bus
+- [] Fix background not filling corners + navbar
 - [] Clean code/Refactor
