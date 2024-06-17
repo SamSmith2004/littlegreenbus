@@ -22,6 +22,7 @@
 .table-container {
     background-color: hsl(0, 0%, 89%);
     width: 80%; 
+    min-width: 720px;
     border: 2px solid; 
     border-radius: 10px;
     padding: 10px; 
@@ -40,6 +41,7 @@
     border: 2px; 
     border-radius: 10px;
     width: 80%;
+    min-width: 720px;
     margin: auto;
     margin-top: 10%;
     padding-top: 55px;
@@ -49,6 +51,7 @@
     border: 2px; 
     border-radius: 10px;
     width: 80%;
+    min-width: 720px;
     margin: auto;
     padding-bottom: 35px;
     color: white;
@@ -88,11 +91,18 @@
     display: block;
 }
 
+.btn-container{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .counter {
     display: flex;
     justify-content: space-between;
 }
 .increment-btn {
+    height: 40%;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -102,6 +112,7 @@
     font-size: 20px;
 }
 .decrement-btn {
+    height: 40%;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -204,16 +215,17 @@
 }
 
 .journeybox {
-    width: 100%; 
-    background-color: green;
     color: white;
     font-weight: bold;
-    padding-top: 10%;
-    padding-left: 15px;
-    padding-right: 10px;
+    background-color: green;
+    margin-left: 8px;
 }
 .journeybox p,h3 {
     font-size: 30px;
+}
+
+.journeyBoxParent {
+    background-color: green;
 }
 
 .passengerFormBox {
@@ -294,9 +306,13 @@
     font-weight: bold;
     text-align: left;
     width: 25%;
+    min-width: 350px;
+    white-space: nowrap;
 }
 .paySelectContainer input{
     width: 30%;
+    min-width: 200px;
+    height: 30px;
 }
 
 .journeyComplete{
@@ -311,5 +327,6 @@
 }
 .journeyComplete img{
     width: 20%;
+    min-width: 300px;
     height: auto;
 }
