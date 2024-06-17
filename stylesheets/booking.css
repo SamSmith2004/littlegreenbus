@@ -256,18 +256,18 @@
 }
 
 .credit-image {
-    width: 10%;
-    height: auto;
+    max-height: 30%;
+    max-width: 10%;
 }
 
 .debit-image {
-    width: 10%;
-    height: auto;
+    max-height: 30%;
+    max-width: 10%;
 }
 
 .paypal-image {
-    width: 10%;
-    height: auto;
+    max-height: 30%;
+    max-width: 10%;
 }
 
 .payment-button{

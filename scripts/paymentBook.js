@@ -14,22 +14,22 @@ function choosePayment() {
     switch (paymentMethod) {
       case "chooseCreditCard":
         paymentSelected = `
-                      <div class="paySelectContainer>
+                      <div class="paySelectContainer">
                           <label for="cardNumber">Credit Card Number:</label>
                           <input type="text" id="cCardNumber" name="cardNumber">
                       </div>
-                      <div class="paySelectContainer>
+                      <div class="paySelectContainer">
                           <label for="expiryDate">Expiry Date:</label>
                           <input type="month" id="expiryDate" name="expiryDate">
                       </div>
-                      <div class="paySelectContainer>
+                      <div class="paySelectContainer">
                           <label for="cvv">CVV:</label>
                           <input type="text" id="cvv" name="cvv">
                       </div>
                       `;
-        targetElement.classList.add("paymentChoice");
-        hasSelectedPayment = true;
-        priorSelectedPayment = event.target.id;
+                      targetElement.classList.add("paymentChoice");
+                      hasSelectedPayment = true;
+                      priorSelectedPayment = event.target.id;
         break;
       case "chooseDebitCard":
         paymentSelected = `
