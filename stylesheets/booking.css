@@ -316,6 +316,26 @@
     height: 30px;
 }
 
+.pay-parent-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px grey;
+    border-radius: 8px;
+}
+
+.pay-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .journeyComplete{
     display: flex;
     flex-direction: column; 

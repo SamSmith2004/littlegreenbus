@@ -19,6 +19,13 @@
         <a href="./booking-front.html">Book Tickets</a>
     </div>
 </div>
+<div class="pay-parent-container">
+    <h1 style="text-align: center">Booking Confirmation</h1>
+    <div id="pay-details" class="pay-container">
+        <p id="TicketCount">Tickets: error</p>
+        <p id="TotalPrice">Total Price: error</p>
+    </div>
+</div>
 <div id="paymentContainer">
     <h1 style="text-align: center">Please select a payment method</h1>
     <div id="paymentOptions" style="margin-bottom: 5%">
@@ -40,4 +47,9 @@
     </div>
 </div>
 <script src="./scripts/paymentBook.js"></script>
+<script>
+    window.onload = function() {
+        paymentDetails();
+    }
+</script>
 </html>

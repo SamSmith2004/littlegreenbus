@@ -102,3 +102,75 @@ function choosePayment() {
       return '';
     }
   }
+
+function paymentDetails() {
+  let bookingDetails = JSON.parse(sessionStorage.getItem("bookingDetails"));
+  console.log(bookingDetails);
+
+  let TicketDetails = {
+  };
+  let price = 0;
+
+  if (bookingDetails.adultcount > 0) {
+    TicketDetails.adultTicket = bookingDetails.adultcount;
+    price = price + (1000 * bookingDetails.adultcount);
+  }
+  if (bookingDetails.childcount > 0) {
+    TicketDetails.childTicket = bookingDetails.childcount;
+    price = price + (600 * bookingDetails.childcount); 
+  }
+  if (bookingDetails.studentcount > 0) {
+    TicketDetails.studentTicket = bookingDetails.studentcount;
+    price = price + (800 * bookingDetails.studentcount); 
+  }
+
+  if (bookingDetails.ticketType === "Return") {
+    price = price * 1.5;
+  }
+
+  let tickets = ''
+  if (TicketDetails.adultTicket) {
+    if (tickets.length > 1) {
+      tickets +='1 Adult Ticket, ';
+    } else {
+      tickets +='1 Adult Ticket, ';
+    }
+  }
+  if (TicketDetails.childTicket) {
+    if (tickets.length > 1) {
+      tickets +='1 Child Ticket, ';
+    } else {
+      tickets +='1 Child Ticket, ';
+    }
+  }
+  if (TicketDetails.studentTicket) {
+    if (tickets.length > 1) {
+      tickets +='1 Student Ticket, ';
+    } else {
+      tickets +='1 Student Ticket, ';
+    }
+  }
+
+  tickets = tickets.trim(); // Trim any leading or trailing whitespace
+  if (tickets.endsWith(',')) {
+    tickets = tickets.slice(0, -1); // remove the trailing comma
+  }
+
+  let ticketElement = document.getElementById("TicketCount");
+  ticketElement.textContent = `Tickets: ${tickets}`;
+
+  let priceElement = document.getElementById("TotalPrice");
+  let formattedPrice = formatPrice(price);
+  priceElement.textContent = `Total Price: €${formattedPrice}`;
+}
+
+function formatPrice(price) {
+  let priceStr = price.toString();
+  if (priceStr.length < 3) {
+    // If the price is less than 100, ensure it's correctly formatted as 0.xx
+    priceStr = priceStr.padStart(3, '0'); 
+  }
+  // Insert a decimal point before the last two digits
+  let newprice = priceStr.slice(0, priceStr.length - 2) + "." + priceStr.slice(priceStr.length - 2);
+  return newprice;
+}
